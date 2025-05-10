@@ -16,277 +16,643 @@
 
 % include metadata in the generated pdf file
 \pdfinfo{
-    /Title (The Occidental Computer Science Comprehensive Project: Goals, Timeline, Format, and Advice)
-    /Author (Justin Li)
+    /Title (The Foxglove Handheld Game Console)
+    /Author (Lavender Perry)
 }
 
 % set the title and author information
-\title{The Occidental Computer Science Comprehensive Project: \\ Goals, Timeline, Format, and Advice}
-\author{Justin Li}
+% TODO: addition to title that says what it is
+% like maybe --
+% Foxglove: A handheld game console with emphasis on hacking
+% or --
+% Foxglove: Using a video game framework to create a handheld game console
+% idk im not that worried about it right now
+% this is just how ive seen other comps formatted
+\title{The Foxglove Handheld Game Console}
+\author{Lavender Perry}
 \affiliation{Occidental College}
-\email{justinnhli@oxy.edu}
+\email{lperry@oxy.edu}
 
 \begin{document}
 
 \maketitle
 
-\section{Introduction}
+\section{Introduction and Problem Context}
 
-This document serves describes the Oxy CS Comps process.
-The first section describes the timeline of comps, as well as the main requirements of a comps project.
-Since one of the main deliverable is a final paper, there is then an interlude on {\LaTeX}, which you will use to write the paper.
-This document then goes into the sections of that final paper and what is expected of it.
-We conclude with some miscellaneous tips for successfully completing comps.
+Many game consoles, in particular older game consoles, have been hacked by
+programmers to support homebrew development. Homebrew is a console application
+made by an individual or group of individuals who do not have access to the
+official tools provided by the console manufacturers. Another similar way for
+individuals to make games for a console is ROM hacking, which is modifying
+an existing game for the console. The term "hacking" in general can mean many
+things, but the meaning I use is modifying a system to benefit the user, in a
+way that resists the system's design.
 
-\section{Computer Science Comps}
+ROM hacking and homebrewing allow
+individuals to express themselves and learn about computers on a platform they
+enjoy \cite{kacmarcik_introducing_2009}. More importantly, hacking of any
+system, including games and consoles, helps marginalized people, including
+disabled people, access these technologies and change systems that exclude them
+better than a one size fits all approach to design \cite{hamraie_crip_2019}.
+Hacking and remixing are important tools for self expression and protest,
+particularly for people underrepresented in computer science, gaming, and
+mainstream technology design.
 
-Occidental's ``Comprehensive Requirement'' is a graduation requirement that serves two goals: ``to provide an opportunity for senior students to synthesize the essential[s] [...] of their academic field'', and ``to provide an opportunity for students to demonstrate competence in their field'' \cite{OccidentalComps}.
-For computer science, the breadth of the field means that comps leans heavily towards the second goal: most CS comps are large coding projects that showcase what a student has learned in their four years at Oxy.
-In that sense, a CS comps project is more like a Studio Arts comps project: you could draw from multiple subfields or focus on just one, but the essence is to take on a complex project of your choice while situating it within the methods of CS.
+Despite, or because of, the benefits of homebrewing and ROM hacking, few game
+consoles facilitate homebrewing, and none facilitate ROM hacking. Many
+handhelds, and systems in general, do not support hacking due to the political
+and economic interests of the manufacturers not aligning with the users. The
+business model of console manufacturers relies on restricting game and app
+development to those who pay. Many ways an individual can hack, of systems
+including game consoles, medical devices, or physical arcitecture, are illegal.
+However, restricting the software through technical measures and law
+closes the advantages of homebrew and indie
+game development to highly technical users who can risk getting arrested.
+As shown by the Nintendo Switch, a console's modding community
+can become an exclusionary and elitist space, gatekeeping anyone who does not
+have the time or resources to learn to mod, or anyone who can not afford to risk
+breaking their console.
+It can enforce the hegemony it should stand in opposition to, and fails the
+exact people that have the most to gain from it \cite{brown_why_2022}.
 
-\subsection{Timeline}
+My project is a handheld game console, inspired by console hackers and
+homebrewers. The console is designed to be opinionated and reflect my own ways
+of playing games, yet encourage and facilitate others remixing and modifying it
+as much as possible. It attempts to give users the tools to become designers of
+the console and games on it, and share their modifications with others. My goal
+is to build a world in the console while encouraging others to hack, build
+and re-build their own, inviting users to design with and against me. I do so
+to answer the question of if creating a game console that is easier to modify
+will foster a more inclusive and supportive community, particularly for people
+new to console modding.
 
-Since comps is a significant undertaking, the CS major curriculum has two courses to support comps projects.
-Most students will take CS Junior Seminar in the spring of their junior year, then take CS Senior Seminar in the fall of their senior year.
-One of the main goals of Junior Seminar is to prepare students for their comps project, including selecting a topic, exploring the literature, and writing a detailed proposal of what they will do.
-The entirety of Senior Seminar is dedicated to students completing their comps; however, it is necessary to separate the Senior Seminar course from the comps graduation requirement.
-Senior Seminar is a required course for the CS major, and it concludes at the end of the fall semester with a grade.
-Comps, on the other hand, is an Oxy graduation requirement, and concludes at the end of the senior year with either ``fail'', ``pass'', or ``pass with distinction'' \cite{OccidentalComps}.
-While the sole purpose of Senior Seminar is to support students working on comps, it is possible for a student to complete the \textit{course} without completing the \textit{graduation requirement}.
-This could occur, for example, if the student ran out of time to finish the project, but submitted all the assignments for Senior Seminar.
-In that case, the student will continue working in the spring senior semester to complete their comps, until they have a ``pass'' or ``pass with distinction'' result.
-A summary of this timeline can be found in Table \ref{tbl:timeline}.
+\section{Technical Background}
 
-\begin{table}
-    \footnotesize
-    \begin{tabular}{r|cl}
-        \textbf{Semester}       &  \textbf{Course}  &  \textbf{Deliverable(s)}          \\
-        \hline \\
-        \textbf{Junior Spring}  &  COMP 390         &  Comps proposal; Tutorial report  \\
-        \textbf{Summer}         &  -                &  Additional research              \\
-        \textbf{Senior Fall}    &  COMP 490         &  Comps final paper; Code repo     \\
-        \textbf{Senior Spring}  &  -                &  Revisions; Honors                \\
-    \end{tabular}
-    \caption{Timeline summary for comps.}
-    \label{tbl:timeline}
-\end{table}
+These are the technical terms and concepts that are relevant to my project.
 
-\subsection{Deliverables}
+\subsection{Modding}
 
-The two main deliverables for CS comps is the code from the project, submitted together with its documentation as a GitHub link, and a paper about the project.
-While the code component is straightforward and uncontroversial, some students may chafe against the idea of a paper.
-Contrary to popular believe, the job of a software engineer does not only involve writing code.
-It also requires a large amount of written communication, such as tickets for bugs reports, proposals for new features and why it will improve the product, comments on why a class is necessary or how a function works, and documentation of the system architecture.
-As software engineers rise from junior to senior positions, these responsibilities only increase.
-It is often lamented that not enough engineers know how to write \cite{Mei2018WhyDevelopersShould,Alton2020WhyEveryDeveloper}, which is why Google has created courses on technical writing \cite{GoogleTechnicalWriting}, and ``soft skills'' are routinely touted as necessary for software developers \cite{Indeed202111ImportantSoft}.
+Modding, short for modifying, is taking a game or software and changing it.
+Typically, this is done to add features or present a different ideal of how the
+software should function, often in a way that serves the user and that the
+original creator of the software did not anticipate. A large amount of my
+project revolves around the idea of modding, and the rest of the terms in this
+technical background are all related to it in some way.
 
-\begin{comment}
-    Why a paper?
-    Goals for the paper
-\end{comment}
+\subsection{Code Injection}
 
-Given these goals, the final paper should be written for an advanced CS undergraduate: someone who has finished Math Foundations, Data Structures, and Computer Organization, but may not have taken the appropriate upper-level courses.
-The paper does not need to explain everything, but should provide enough relevant details so the average reader can understand your results; a walkthrough of the sections of the paper can be found in Section \ref{sec:paper}.
-The paper will be written in LaTeX, to make all final papers uniform in style and to allow for psuedocode and mathematical equations; a template will be provided and required.
-To ensure there is sufficient context and detail, the paper should be about six to ten full pages in length (excluding figures, tables, code, and references).
-The target audience for the paper is other computer science majors in their final year of college, but who may not have taken the same electives that you have.
-That is, you should assume that they have working knowledge of data structures, discrete math, and computer systems, but not necessarily any knowledge of artificial intelligence, machine learning, databases, or other more advanced topics.
+Code injection is the process of making a software load and run third party
+code. Injecting code is typically how modding is accomplished, and therefore
+allows many of the practices discussed in this project to occur. Sometimes this
+is accomplished by exploitable bugs in the software itself, while other times,
+and in my project, it is accomplished by manipulating the environment in which
+the software runs.
 
-The other major deliverable is the code, which should be made available on a public GitHub repository.
-Accompanying the code should be two pieces of documentation, both included in a \texttt{README.md}.
-First, there should be instructions for how to run the code, which should including how to find and install necessary software and packages, how to find and download relevant datasets, and what other requirements (hardware, spatial needs for VR, etc.) are needed.
-This should be written for an audience who is interested in reproducing your work and verifying your results.
-Second, there should be a brief overview of how the code is organized, including the major components that exist and the content and format of the data that is passed between them.
-This should be written for someone who is interested in extending your project --- say, by tweaking the parameters, or adding new functionality, or applying it to a new context.
+\subsection{Patches}
 
-More details about both deliverables will be provided in the Junior and Seminar Seminars.
+A patch describes how source code changes from one state to the next. Patches
+function as instructions for how to apply source code changes, and are
+especially useful for modding. Often, a modding API allowing users to inject
+their code into software will take patches as input to specify what code should
+be injected. Patches are commonly used in ROM hacking, as explained in the
+following subsection.
 
-\begin{comment}
-    something about non-code projects?
-\end{comment}
+\subsection{ROM Hacking}
 
-\subsection{Selecting a Comps Project}
+ROM hacking is a specific type of modding targeted at console games.
+Most console games are stored in read-only memory, or ROM.
+This is typically binary data that is difficult to modify,
+and is not intended to be copied or edited.
+ROM hacking is the practice of copying and modifying the ROM to
+change aspects of the game, such as art or text.
+A ROM hack is the resulting game made from this practice.
+Because a ROM hack relies on data from the original ROM,
+which is often illegal to redistribute even in modified form,
+ROM hacks are typically distributed as patches to the original ROM.
+To play the ROM hack, users will use a tool called a ROM patcher to reconstruct
+the modified ROM from the original ROM and the patches.
+Similarly to a ROM patcher, my project may use a patch format to provide a
+game modification system. Unlike ROM hacking, the game files will exist
+as Lua source code, which is easier to read, copy, and modify.
+More information about my modding and patching system is in section 4.
 
-For many students, selecting a topics for comps is a major source of stress.
-While this is an important decision, it is also one for which you will receive a lot of support.
-Choosing a topic, together with ensuring that you have the relevant background and experience for the project, is a major component of Junior Seminar.
-There have also been students who change their project during Senior Seminar, and still finished their comps within the semester; although this is not recommended, this delayed timeline shows how much leeway there is for exploration and backpedaling.
+\subsection{Homebrew}
 
-As a rough guide, comps projects should be equivalent to the work of an upper-level CS elective, and should either dive deeply but narrowly into a subfield of CS, or reach broadly across subfields or across disciplines without being too shallow.
-The only constraint on the topic is that CS+Math and CS+X students must select a project that fits within their theme, and should check with their academic advisor to make sure this is the case.
-Although double majors could do both comps on the same topic, they must have aspects that are unique to each major.
-For example, a cognitive science and computer science double major could do both projects around biologically plausible neural networks, but the cognitive science project might be about comparing its activity to real brains, while the CS project might instead focus on its algorithmic performance.
-We will spend more time on this in class, but you might consider the following prompts in brainstorming your project:
+Homebrewing is similar to ROM hacking, but does not involve any modification
+of video games. Instead, the process involves developing a game or application
+from scratch, using community provided development tools. Many game consoles
+have official development tools available to anyone, which I will elaborate on
+in section 3. For consoles without official and available development tools, or
+that disallow third party development, homebrewing is a useful practice.
 
-\begin{itemize}
-    \item What topics were you most interested in from your classes? What area of CS would you like to dive deeper into?
-    \item Alternately, what topic were you unable to take a class in (either due to full enrollments, or because Oxy doesn't offer it)?
-    \item What interdisciplinary topics or CS-adjacent topics would you like to explore?
-    \item What projects might be a good showcase of your abilities to potential employers in your desired field?
-\end{itemize}
+\section{Prior Work}
 
-A list of past comps projects can be found online.\footnote{\url{https://www.oxy.edu/academics/areas-study/computer-science/past-senior-comps-projects}}
+There are multiple studies as well as other projects that are relevant to
+\textit{Foxglove}, which I discuss and categorize here.
 
-\section{Interlude: Using \LaTeX}
+\subsection{Accessibility}
 
-LaTeX (pronounced \textit{lah-teck} or \textit{lay-teck}), often stylized as {\LaTeX} and written as latex, is a document markup language and typesetting system.
-Building on the {\TeX} language created by Donald Knuth in 1978, LaTeX provides additional commands for common document needs such as sections, figures, and bibliographies.
-LaTeX is widely used in academia, especially in mathematical fields, due to how easy it is to write mathematical equations and its automatic management of references.
-Since it is a markup language, LaTeX source files are written in plain text, which also makes it compatible with version control systems like git.
+One of the goals my project has is to support game accessibility without being
+overly prescriptive, as accessibility needs vary significantly between
+individuals. Although some bias towards certain needs is inevitable, design
+recommendations such as those proposed by Martinez et al. after interviewing
+disabled gamers may help in creating a gameplay system which supports gamers in
+finding and adapting games to work for them. Recommendations which are within
+the scope of this project include providing mechanisms for the player to
+customize the game as well as documenting these mechanisms in an easily
+discoverable place \cite{martinez_playing_2024}. More information on how I
+integrate these design recommendations are in section 4.
 
-The most primitive syntax of LaTeX is the \textit{macro} or \textit{command}, which is always written with a backslash followed by the name of the command.
-The {\LaTeX} glyph, for example, can be created with the command \texttt{\textbackslash LaTeX}.
-Some commands take parameters, which are denoted in braces (e.g., \texttt{\textbackslash usepackage\{biblatex\}} will import the \texttt{biblatex} package), with some commands additionally accepting options in square brackets (e.g., \texttt{\textbackslash usepackage[style=numeric]\{biblatex\}}).
-The \texttt{\textbackslash begin} and \texttt{\textbackslash end} commands are special, as they indicate the start and end of an \textit{environment}.
-The content of a LaTeX document, for example, is surrounded by \texttt{\textbackslash begin\{document\}} and \texttt{\textbackslash end\{document\}}, indicating the text that should appear in the document.
+\subsection{Cheap and Low Power Handhelds}
 
-\begin{figure}
+\textit{ENGAGE} is a \textit{Game Boy} compatable handheld console that works
+without a battery.
+Instead, it uses a small solar panel as well as buttons that harvest energy
+from the gamer's actions to power the device.
+What I found most interesting is the power saving methods they used,
+which I may adopt for my own device.
+Although some methods had drawbacks to them, such as using a non-backlit screen,
+one that had very little drawbacks was attaching an external FRAM device.
+Another interesting aspect of the \textit{ENGAGE} is it
+reads the memory values of the \textit{Game Boy} game
+and stores them to reload them
+when the console loses and regains power \cite{de_winkel_battery-free_2020}.
+I plan to introduce a general purpose modding API into my handheld that
+gives access to the modded game's memory, although at a higher level.
+
+\subsection{Controllers}
+
+Many handheld game consoles do not prioritize third party controller support
+in their design, in part due to their small, portable form factors.
+However, many people create their own controllers and may wish
+to use them with the handhelds. A common practice is using everyday objects, to
+lower both the financial cost and environmental impact of
+creating the controllers. An example is work by Pokorny et al., which uses
+microcontrollers and common household objects to create controllers designed for
+existing games \cite{pokorny_bin_2023}. Kits such as Makey Makey additionally
+open the process to individuals with no background in electronics
+\cite{collective_makey_2012}. See section 4 for how my console will be designed
+to support these controllers.
+
+\subsection{Development and Modding Platforms}
+
+Although some game consoles close off development to users, requiring them to
+create homebrew, others, especially more recently, are designed to allow users
+to develop for them. One such example is PlayDate. It provides developer tools
+and explicitly encourages independent developers to make games for the platform.
+These tools additionally take steps to encourage transparent, accessible games
+by allowing developers to specify content warnings in the game metadata
+\cite{inc_inside_nodate}.
+
+Providing an open development platform for a game console is one way to make
+creation for the console easier. Additionally, there are efforts to lower the
+technical barrier to creating homebrew for existing consoles, made by and for
+users of the console.
+One such example is \textit{LÖVE Potion}, a port of the \textit{LÖVE} video
+game framework to Nintendo consoles, including the 3DS, Wii U, and Switch
+\cite{noauthor_lovebrewlovepotion_2025}.
+\textit{LÖVE Potion} allows users to make games
+for these consoles without having to use systems programming languages such as
+C, and gives them high level functions and abstractions to make the process
+significantly more beginner friendly. Because \textit{LÖVE}
+has been successfully adapted
+to game consoles, and it is flexible enough to adapt to my own console, I am
+utilizing it for my development platform. Modding tools for \textit{LÖVE},
+such as
+\textit{Lovely}, may also be used to provide tools for modding on the console.
+\textit{Lovely} is a library that, when loaded alongside \textit{LÖVE},
+allows for Lua code injection into a
+\textit{LÖVE} game. Although primarily used to mod \textit{Balatro},
+it should work for any other
+game made with the \textit{LÖVE} framework.
+\cite{green_ethangreen-devlovely-injector_2025}. More information on how I use
+\textit{LÖVE} and how I plan to use \textit{Lovely} for this project
+is in section 4.
+
+\subsection{Launchers}
+
+One of the core components of any game console is a menu to access the games and
+other applications on the console. Commonly called launchers, an example of one
+that integrates the \textit{LÖVE} framework is \textit{Love Launcher}
+\cite{noauthor_glitchapplovelauncher_nodate}. Although it does a lot of things
+that I can incorporate into my launcher, it is not suitable to use with
+my handheld. Most significantly, it is not designed with the handheld form
+factor in mind. In section 4 I will explain what aspects of this launcher I take
+inspiration from, and what I choose to do differently from it.
+
+\section{Methods}
+
+\textit{Foxglove} consists of multiple components:
+the physical console hardware, the
+game launcher, and the operating system. These components integrate with each
+other to create a fully functional game console.
+
+\subsection{Launcher}
+
+The launcher (available on GitHub
+\cite{perry_lavenderperryfoxglove-launcher_2025})
+handles listing games to the user, managing console settings, and
+running console games. Similarly to \textit{Love Launcher},
+it is built using the \textit{LÖVE}
+framework and runs games built on that same framework. The primary architectural
+difference between \textit{Foxglove}'s launcher and
+\textit{Love Launcher} is, while \textit{Love Launcher}
+creates a new process and starts up the framework whenever a game is launched,
+\textit{Foxglove}'s launcher uses the existing process to run the game,
+allowing the game
+to take control over the process that the launcher is running in
+\cite{noauthor_glitchapplovelauncher_nodate}. I chose this approach for two
+reasons. My primary reason is that the console draws all of its graphics using
+low level Linux graphic APIs, and it is much simpler to have one process
+interfacing with these APIs than it is to have multiple processes. The other
+reason is I can easily modify the framework by running the game's code in
+specific ways. One way I use this to my advantage is by wrapping the game's exit
+handling code to exit back to the launcher instead of quitting entirely. In the
+future, I hope to modify the games in a way that introduces a modding API,
+elaborated upon in the next subsection.
+
+\begin{figure}[!htb]
     \centering
-    \includegraphics[width=.95\linewidth]{recursion.png}
+    \includegraphics[width=.95\linewidth]{launcher.png}
     \caption{
-        The current page of this paper, as an image.
+        A screenshot of the launcher, showing a menu for selecting games.
     }
-    \label{fig:first-page}
+    \label{fig:launcher}
 \end{figure}
 
-Beyond the basic syntax, much of learning LaTeX is learning the different commands and environments that exist.
-For example, text can be made \textbf{bold} with \texttt{\textbackslash textbf}, \textit{italic} with \texttt{\textbackslash textit}, and \texttt{monospaced} with \texttt{\textbackslash texttt} (the \texttt{tt} stands for for ``teletype'').
-Single dollar signs denote inline equations, so \texttt{\$E = mc\textasciicircum 2\$} will be rendered as $E = mc^2$.
-Double dollar signs will render the equation in display mode, which we can see with the quadratic formula:
+For the UI, the user scrolls through the games, showing three at a time on the
+screen. It is inspired by other game consoles, such as the Nintendo Switch, that
+scroll through games in a similar way \cite{noauthor_nintendo_nodate}. The
+graphics of the menu currently use only three colors, so that they can be
+customized without overwhelming the user with large amounts of colors to change.
+I also show images for each of the games, which are currently specified in a
+seperate directory from them. In the final version, the path to the image will
+be specified by the game metadata, described in subsection 4.4.
 
-$$\frac{{-b \pm \sqrt {b^2 - 4ac} }}{{2a}}$$
+\subsection{Modding API}
 
-There are also a handful of common environments:
+The modding API may integrate with tools such as \textit{Lovely}
+to allow for direct
+source code modification of games. Using \textit{Lovely}'s patch format,
+the user will be
+able to specify code to inject into the source of a game
+\cite{green_ethangreen-devlovely-injector_2025}. This allows for large
+amounts of flexibility in modding games, as third party code may modify anything
+the user would like, including implementing an entirely different game on top of
+an existing one.
+
+Another type of modding API I may choose to implement is a system built around
+callback functions. As my current game launcher already has access to the
+process in which the game is running, it can call other functions before or
+after calling specific functions the running game defined. By calling functions
+defined by a mod in specific situations, I can implement a callback-based
+modding API.
+
+One advantage of a callback-based modding API over direct source code
+modification through patches is that the user does not have to reference the
+game's source code as much. Instead of thinking about their changes based on
+what position in the original source code they will take place at, the user can
+think about their changes based on what situation they will be executed at. This
+may facilitate modding better, especially for users unfamiliar with reading
+source code. A callback-based system may also be easier for users because there
+is no patch format to learn. Instead, callbacks are specified simply by defining
+functions, so there is nothing extra to learn in addition to the coding skills
+necessary to mod games already. Another advantage to a callback-based system is
+it decreases the chance of issues when applying multiple mods to the same game.
+If multiple people make a mod for the same game, their source code may overwrite
+each other in a patch-based system. In a callback-based system, it is easier to
+ensure compatability between mods, as all mod functions are called separately
+from each other and can not overwrite each other.
+
+However, a patch-based system has many advantages over a callback-based system.
+First, it is much more flexible. While a callback-based system limits modders to
+injecting their code only where I have created a callback, a patch-based system
+allows modders to inject their code anywhere. Additionally, a callback-based
+system may be created on top of a patch-based system, but a patch-based system
+can not be created on top of a callback-based system. Another reason to prefer a
+patch-based system is I can use \textit{Lovely} for part of it
+instead of needing to
+implement the entire thing from scratch. This also partially mitigates the
+disadvantage of needing to learn a patch format, because users may already know
+\textit{Lovely}'s format,
+or may choose to use their knowledge of the format for modding
+outside the context of \textit{Foxglove}.
+
+\subsection{General Customization}
+
+Although customization is possible through the modding API, options should be
+provided for the user that do not require console modding. The primary
+categories for customization I am thinking of right now are color and font
+customization. Color customization may
+include presets such as light, dark, low contrast, and high contrast, as well as
+allowing users to specify each of the three colors manually. The presets are
+available to avoid overwhelming the user with choices, while the manual option
+for setting colors is available for users who prefer maximum control. For font
+customization, including fonts shown to be readable for people both with and
+without dyslexia, such as Arial, Computer Modern, Courier, and Helvetica may
+improve the usability of the UI \cite{rello_effect_2016}. Font size and style
+(regular, italic, bold) are other aspects of fonts that may be customizable.
+
+\subsection{Integrated and Custom Controls}
+
+The main control scheme I am considering for
+\textit{Foxglove} consists of 4 to 7
+buttons. This lower than average amount of buttons is in the range of an older
+console, such as the \textit{Game Boy} with 8 buttons,
+when the directional pad, or D-pad,
+is counted as 4 \cite{de_winkel_battery-free_2020}.
+One reason to choose this amount is to
+reduce the learning curve for using the controls. With less possible inputs,
+there are less motions for the player to learn and do, which may also make
+\textit{Foxglove} accessible to people who struggle with many possible inputs.
+Another
+advantage to having less buttons is making the built in controls and custom
+controllers for \textit{Foxglove} is easier.
+For both myself while making the console and
+for others while creating controllers for the console, it requires less hardware
+and makes assembly simpler. Users making custom controllers will have more
+options in terms of form factor, as they have less inputs they need to map to.
+The integrated controls on the console will likely have 4 of its buttons, or
+inputs, be satisfied by a D-pad, so that games may take advantage of a
+directional element.
+
+Another design element of the integrated control scheme which I considered
+is putting the buttons on the back of the console. Doing so has the benefit of
+making custom controllers feel better integrated into the console, as you can
+not see the integrated controls while using the console. It also allows for
+users to control the console with the rest of their fingers, rather than
+their thumbs, which may be preferable to some. One drawback of having controls
+on the back is that setting the console down on a table would possibly press all
+the buttons. A way to avoid this would be to not accept inputs from integrated
+controls whenever an external controller is plugged in. However, it would also
+likely be easier to put the controls on the front and make custom controllers
+feel more integrated another way, such as allowing the symbols used to represent
+buttons on the controller to change based on the controller plugged in.
+
+\subsection{Game Metadata}
+
+Games will be able to define metadata, which tells the console how to handle the
+game. It will be similar to PlayDate's metadata definition system in that it
+will work using a file at the root directory \cite{inc_inside_nodate}. This file
+will likely be in TOML, which is already used by \textit{Lovely}
+\cite{green_ethangreen-devlovely-injector_2025}. Using a standard format
+decreases the amount of work I need to do to parse it and increases the chance a
+user has already learned the format. Metadata will include the game title,
+author(s), version, a path to an icon to represent the game,
+a list of accessibility features the game supports, and a list of content
+warnings that apply to the game. All of these fields will be displayed by the
+launcher in some way.
+
+%The next steps for game functionality
+%are allowing users to easily install games
+%and providing tools to modify the games. Installation may be done through
+%external storage such as USB drives or SD cards that are inserted into the
+%console and copied to the console storage. Modification of games may use a
+%pattern-based patch system such as \textit{Lovely}
+%\cite{green_ethangreen-devlovely-injector_2025}. Alternatively, callbacks
+%injected by the launcher may be used by making the launcher load custom code
+%specified by the modifications.
+
+\section{Evaluation Metrics}
+
+Although the project is still at an early stage, evaluation shows that the
+launcher is on the right track for meeting goals of functionality
+(being able to run games) and aesthetics (looking pretty). More work is needed
+before any positive judgement can be made on ease of use (users can use the
+launcher without guidance), customizability (launcher and games can be
+modified to fit user preferences), and integration (launcher works with the
+other components). Only the launcher is evaluated here, as work on other
+components has not been started yet. A discussion of future metrics is present
+in subsection 5.3.
+
+\subsection{Testing With Games}
+
+To ensure the launcher can handle a reasonable variety of games, I tested
+multiple games made with the \textit{LÖVE} framework.
+Games could all be listed in the UI
+and launched. Any game that relies on mouse input does not work when the
+launcher is ran on the low level graphics APIs the console uses. However, this
+is an acceptable shortcoming, as the handheld game console will not have a
+mouse. Other than that, all games are listed, launch, and run as expected.
+
+\subsection{User Testing}
+
+As the launcher is not complete yet, it has only had one user tester so far,
+with more being planned as development continues. The tester was able to
+navigate the UI with some guidance. The need for guidance should decrease when
+the launcher is on the actual console, because the control scheme will be more
+apparent by the physical design, but this is still an issue to consider in
+future testing. The tester liked the aesthetics of the UI as well. When asked
+if there are any aspects of the UI the tester would want to customize, they
+responded that they would appreciate a light mode, where the UI has a light
+background with a dark foreground. Another item of feedback the tester gave is
+there should be the ability to customize the font. Customization options of the
+UI have not been implemented yet, but the tester's feedback has revealed color
+and font customization as a viable starting point. Ideas for font and color
+customization are elaborated upon in the previous section.
+
+\subsection{Future Metrics}
+
+To determine if \textit{Foxglove} reaches the goal of being easy to mod and
+extend, I intend to perform more user testing, but with a primary focus on ease
+of developing games for and modding of the console. Testers will be primarily
+individuals with little to no experience with computer science, to avoid
+creating a system that is easy for computer scientists,
+but difficult for others. Additionally, testing on a wide variety of users must
+occur see how successfully \textit{Foxglove} meets goals of accessibility, and
+for which users it meets or fails those goals.
+
+Additionally, I may attempt to teach an informal class
+class on developing and modding games on \textit{Foxglove}. The goal of this is
+to see if \textit{Foxglove} is easy enough to teach to others with no
+experience, as well as to see what kind of community \textit{Foxglove} can help
+build through this setting. The main issue with this type of evaluation is that
+failures in the class may be due to my own incompetency as a teacher, rather
+than any failures with the project. An alternative option is to get someone else
+to do it, but that is much more work than I would feel comfortable asking
+someone else to do.
+
+Alternatively, to evaluate the community building goals of my project, I can
+attempt to spread the project and see what community results from it. This would
+be primarily on the internet, as most other console modding communities are
+\cite{brown_why_2022}. Forums and chatrooms that surround similar topics to my
+game console and encourage sharing projects are ideal spaces. If promotion of
+\textit{Foxglove} is done in a similar space to console modding projects and
+communities, it should be easier to compare what occurs to those other
+communities. The main issue with this idea is that communities take time to
+develop, so it would likely take past the due date for any conclusions to be
+made about this evaluation. It is likely best left as future work, as is the
+previous idea.
+
+\section{Results and Discussion}
+
+As shown by testing, the game launcher was a successful first step towards my
+project. My most significant next steps include getting the launcher to run on
+hardware more similar to the eventual final project, as well as beginning to
+implement modding APIs. One potential necessary technical change to the launcher
+would be to give it more control over the \textit{LÖVE}
+game framework environment that
+it runs in. This would require either making the launcher itself be a modified
+version of
+\textit{LÖVE}, or creating a seperate application that uses the \textit{LÖVE}
+library.
+The process of doing either of these things may require rewriting some or all of
+the existing code from Lua to C++. A rewrite such as this one should be done as
+early as possible to avoid having to rewrite more code than necessary.
+
+\section{Ethical Considerations}
+
+The ethics of my project mainly revolve around the fact that I am building
+for the world that I wish existed, not the one we currently live in. Although my
+project could potentially get more people into art, video games, and computer
+science, the issues excluding people from doing those things are at least
+partially community and societal, rather than technological.
+I explore how making
+something easier is not always the solution, consider the role of an
+individual's lack of free time in creating an access barrier, and explain the
+issues involved in making a hardware-based project such as my own. Despite the
+ethical issues arising from my project, I believe it is still worthwhile to
+pursue.
+
+\subsection{Difficulty}
+
+One important consideration is if the project will, rather than encouraging
+users to hack and expand on game consoles, have the opposite effect.
+Goode and Cruise argue that a significant motivating factor for people to remove
+copy protection from software is the difficulty in doing so, where the
+individual removing the copy protection seeks a personal challenge
+\cite{goode_what_2006}. Although this could be considered hacking, it is not the
+type of hacking I am interested in for the purposes of this project. However, it
+is likely there is some crossover, in that people making and modifying games and
+applications for game consoles are motivated, in part or entirely, by the
+difficulty of it. Motivation by challenge is likely not a quality exclusive to
+any specific subset of individuals, so applying it to console modding is
+appropriate. Therefore, making the process of creating and modifying for my
+console easier may discourage, rather than encourage others from doing so.
+
+However, there are other motivations to hack which must be considered.
+Brown et al. respond to Goode and Cruise's argument with an alternate view of
+why users hack, which emphasizes a difference in interests between the users and
+the designers, or the organization dictating what the designers may do
+\cite{brown_why_2022}. At first glance, this implies a failure on the designer's
+part, yet a better way to view this is through bad design being an individual
+judgement that varies from person to person. Therefore, it is possible for users
+to still want to modify a project even if it is not maliciously designed.
+Even if some users are put off by it being too easy, a significant amount who
+were already turned away by it being too difficult will be interested. It should
+also be possible for users to scale up the difficulty level depending on what
+they make as needed.
+
+\subsection{Accessibility / "Good" Design}
+
+Encouraging modification may help individuals overcome design issues that affect
+them, however using it as a solution for every design issue is lazy and requires
+the user to do too much labor. If the user has to do too much work to make the
+console accessible to them, they may decide it is not worth the trouble, such as
+in the case of some of the disabled gamers polled by Martinez et al.
+\cite{martinez_playing_2024}. Frequent testing with as wide a variety of people
+that my intended audience consists of is necessary to catch design issues that
+can be mitigated without too negative a tradeoff, and re-evaluating who my
+audience is as I complete the project is also important. Without paying
+attention to these things, preventable accessibility issues may occur.
+
+\subsection{Time}
+
+Another consideration is under our past and current hegemonic society, time is a
+limited, commodified resource. Fellner defines the commodification of time by
+defining a set of motivations for how people use their time, which are power,
+playfulness, meaning, and belonging. The process of commodifying time involves
+increasing the percieved importance of power at the cost of anything else. This
+means people often have to devote all their time to capitalist labor and do not
+have time to create or enjoy art \cite{fellner_value_2017}. Having time for
+things like this game console is a luxury that is most available to individuals
+least impacted by systematic oppression. I'm not exactly sure how to mitigate
+these issues, but they're important to think about before implementing features
+that require the user to have lots of free time. It may also be another point in
+favor of making creating and modding for the console easier, as the more
+difficult it is, the more time it will take to learn how to do it.
+
+\subsection{Hardware}
+
+As this project is a game console, a significant part of it will be
+hardware-based. This makes the project harder to reproduce, as anyone seeking to
+reproduce it will have to purchase hardware. Mining of materials to use in that
+hardware involve inhumane labor practices and exploitation, especially of
+communities in the Global South. This extractive, colonial process also
+wrecklessly destroys the environment for profit. However, all computer
+technologies -- including my project, including any devices for personal or
+educational use, and including any devices used to raise awareness about and
+protest against this issue -- all rely on the materials mined through this
+process, and therefore are complicit in the problem. When raising these issues,
+de Castro Leal et al. do not suggest abandoning technology altogether, instead
+raising questions for computer scientists to consider when building projects and
+conducting their research. Many of these questions encourage de-emphasizing
+innovation in exchange for slower, more thoughtful creation and use of
+technology \cite{de_castro_leal_into_2021}.
+
+In considering these questions, I have primarily focused on creating an
+imperfect but more sustainable than average game console. It is useful to think
+of my project not as the single final deliverable, but as many copies of it
+distributed on a large scale, as that is what would likely do the most harm.
+Extra peripherals will be minimized to avoid relying even more on unethically
+produced materials. Hardware performance will be neglected entirely to
+discourage the industry's unsustainable obsession with recreating hardware to
+achieve the fastest performance possible, thereby furthering the disregard for
+sustainability and human rights. All software made for this project will run on
+other hardware, albeit with potential usability compromizes on those platforms,
+to avoid the requirement to rebuild the hardware in order to experience the
+project. Despite these measures, I, along with most other computer scientists,
+am complicit in this harmful process. No amount of consideration on an
+individual level will solve these systemic issues of imperialist exploitation,
+yet it is critical to attempt to address the ethics anyways, especially in
+projects like this one.
+
+\section{Timeline}
+
+An initial idea for the timeline of my project is as follows:
 
 \begin{itemize}
-    \item \texttt{itemize} for bulletpoint lists
-    \item \texttt{enumerate} for numbered lists
-    \item \texttt{figure} for figures (see Figure \ref{fig:first-page})
-    \item \texttt{table} and \texttt{tabular} for tables (see Table \ref{tbl:timeline})
-    \item \texttt{lstlisting} for code listings (see Listing \ref{lst:python-hello-world})
+    \item June
+        \begin{itemize}
+            \item Begin prototyping hardware
+        \end{itemize}
+    \item July
+        \begin{itemize}
+            \item Obtain components for the hardware
+        \end{itemize}
+    \item August
+        \begin{itemize}
+            \item Week 1-2: Work on the modding APIs and solidify the intended
+                  game development process
+            \item Week 3-4: 3D print a case for the hardware components
+                  based on my prototype and begin constructing the hardware
+        \end{itemize}
+    \item September
+        \begin{itemize}
+            \item Week 1-2: Determine the most appropriate control scheme for
+                  the console and implement it
+            \item Week 3-4: Make the Linux environment that runs the game
+                  launcher and put it on the hardware
+        \end{itemize}
+    \item October
+        \begin{itemize}
+            \item Week 1-2: Work on a system to install games from USB media
+            \item Week 3-4: Finalize the documentation for the project, writing
+                  less technical tutorials in addition to refining all technical
+                  documentation
+        \end{itemize}
+    \item November
+        \begin{itemize}
+            \item Week 1-2: Evaluate the success of the project with more
+                  focused user testing
+            \item Week 3-4: Work on graphics, aesthetics and poster
+        \end{itemize}
+    \item December
+        \begin{itemize}
+            \item Week 1-2: Refine project, update poster if needed
+            \item Week 3-4: Last minute changes, submit the project
+        \end{itemize}
 \end{itemize}
-
-\begin{lstlisting}[
-    language=Python,
-    caption={Hello, World! in Python},
-    label={lst:python-hello-world},
-    float
-]
-def hello():
-    print('hello, world!')
-\end{lstlisting}
-
-This covers the most frequently used commands, but as you might have already inferred, LaTeX is a vast and deep system, and can easily be overwhelming.
-We recommended reading through the \citetitle{Overleaf2021LearnLaTeXIn} tutorial \cite{Overleaf2021LearnLaTeXIn} and using the \citetitle{WikiBook2022LaTeX} \cite{WikiBook2022LaTeX} as reference.
-Beyond that, you should examine and play with the source of this document to gain working proficiency with LaTeX.
-
-One final note on writing in LaTeX.
-Since LaTeX is only a markup language, the source files must be compiled into a viewable form, most commonly into a PDF file.
-The source of this document is made up of several files, each with its own purpose:
-\begin{itemize}
-    \item \texttt{document.tex} - The main LaTeX file containing the contents of the document.
-    \item \texttt{oxycomps.sty} - A style file with settings for what the document should look like.
-    \item \texttt{references.bib} - A list of bibliography items.
-    \item Other files containing images, build instructions, etc.
-\end{itemize}
-Manual compilation of these files is somewhat esoteric, as it requires multiple uses of the \texttt{pdflatex} and \texttt{biblatex} commands.
-Instead, it is much easier to use tools such as \texttt{pdflatex} or \texttt{latexmk} (in the terminal) or Overleaf (online) for compilation.
-We have also provided a \texttt{Makefile} which will automatically update the document as necessary; the use of makefiles is beyond the scope of this document, but see \textcite{Lambert2021MakefileTutorial}.
-
-\begin{comment}
-No definition citations, unless the term itself is in dispute
-Separate problem background from technical background
-    Unclear if games and apps require much technical background
-    The general structure of the framework might be better suited for the Architecture Overview section
-        Eg. Flask uses decorators to associate functions with URLs
-        Eg. Unity has scripts associated with objects and specific triggers, such as walking into an area, pressing a button, etc.
-    Maybe a better name is "algorithmic background"?
-        Should explore what does and doesn't count
-            All ML counts
-            App and game frameworks do not
-        Framework vs. library?
-            I like the idea of [inversion of control](https://martinfowler.com/bliki/InversionOfControl.html), but that may be too abstract for students to understand
-        Heuristic: is understanding that system necessary to understand the results?
-            Ie. How Flask or Unity works doesn't influence whether the app/game is useful/fun/engaging
-            But how (say) linear regression works is highly relevant for why the results match/don't match the actual values
-\end{comment}
-
-\section{The Oxy CS Comps Paper}
-\label{sec:paper}
-
-This section will walk through the different sections of the comps final paper.
-Note that your specific paper may not have all these sections; for example, it is common for app design projects to combine the methods and evaluation sections, to better match the iterative design process.
-Nonetheless, your paper should have all of the \textit{content} described here.
-
-\subsection{Introduction and Problem Context}
-
-This section should motivate why the project is interesting both to you and to the computer science community or the general public.
-You should also justify the difficult of the project.
-As a rough guideline, your project should be either narrow but deep in a subfield of CS, or broadly reaching across subfields without being too shallow.
-It should be comparable to the amount of work/content in an upper-level elective.
-
-\subsection{Technical Background}
-
-This section introduces the technical knowledge necessary to understand your project, including any terminology and algorithms.
-You should assume that the reader is a CS undergraduate like yourself, but not necessarily familiar with AI/ML/HCI/apps/video games/etc.
-
-\subsection{Prior Work}
-
-This section describes of related and/or existing work.
-This could be scientific or scholarly, but may also be a survey of existing products/games.
-The goal of this section is to put your project in the context of what has already been done.
-
-\subsection{Methods}
-
-This section describes what exactly you will be working on.
-What are you building? How will it combine/incorporate ideas from the literature? Be specific about what you will be doing: talk about the specific algorithm you will implement/use, the specific dataset/platform/API, and what the outcome of your project will look like.
-All of these decisions should be justified as well.
-
-\subsection{Evaluation Metrics}
-
-This section describes how you will evaluate your project.
-What will you be measuring, and how will you measure it?
-You might think about what would result in an F, a C, or an A for comps.
-Alternately, think about what are the minimal requirements for passing the class, what you might do if you had more time and resources, and what the best case scenario would be if everything went swimmingly.
-
-\subsection{Results and Discussion}
-
-limitations
-
-\subsection{Ethical Considerations}
-
-Are there any ethical concerns that might arise from your project?
-You might think about whether your project perpetuates societal inequity (or could be used by others to do so), whether the data/platforms you are using is collected with informed consent and free of bias, and whether you might be subject to technological solutionism instead of working support/better the public infrastructure.
-Include a discussion of how you plan to mitigate these issues in your project.
-
-\subsection{Timeline}
-
-A timeline of major milestones, with specific items to be completed by specific dates/months.
-Note that this timeline must start over the summer; otherwise you will unlikely have enough time to complete a project of the expected scope.
-As part of the discussion around your timeline, talk about what you already know that would help you with the project, and what you expect to have to learn to be successful.
-Include programming languages, technical concepts, as well as processes (e.g., user testing).
-
-\subsection{Replication Instructions}
-
-This section will demonstrate that you have thought through the basics of how your code will work. You should include a diagram of the overall data flow of your program, including what the inputs and outputs of each component will be, and how they will be represented.
-
-\subsection{Code Overview}
-
-\subsection{Appendices}
-
-\section{Project-Specific Guidance}
-
-\subsection{Machine Learning}
-
-\subsection{Mobile and Web Apps}
-
-\subsection{Games and Experiences}
-
-\section{Tips and Advice}
-
-\subsection{The Academic Voice}
-
-Although you may already have a lot of practice with college-level writing, the \cite{InkAndSwitch2022AcademishVoice}
 
 \printbibliography
 
@@ -295,70 +661,5 @@ Although you may already have a lot of practice with college-level writing, the 
 \clearpage
 
 \onecolumn
-
-\section{Paper Rubric}
-\begin{landscape}\small
-\begin{longtable}{p{0.19\linewidth} | p{0.19\linewidth} | p{0.19\linewidth} | p{0.19\linewidth} | p{0.19\linewidth}}
-\textbf{CONTENT AREA}
-    & \textbf{Excellent}
-    & \textbf{Good}
-    & \textbf{Marginal}
-    & \textbf{Unacceptable} \\
-\toprule \endhead
-\textbf{Problem Statement} - What problem are you solving? Why is it important?
-    & \cellcolor{excellent} The problem to be solved is clearly stated, and its importance and value clearly laid out. All relevant societal context is discussed, as it relates to and will influence the project.
-    & \cellcolor{good} The problem to be solved is clearly stated, but its importance and value overstated. Most relevant societal context is discussed, but may need clarification on how it relates to or will influence the project.
-    & \cellcolor{marginal} The problem to be solved is only vaguely stated, and its importance and value overstated. Significant social context is missing, or the context does not readily relate to the project.
-    & \cellcolor{unacceptable} There is no clear problem to be solved, with minimal explanation of the importance/value of the project. Little to no societal context is presented. \\
-\midrule
-\textbf{Technical Background} - What does someone need to know to understand the problem?
-    & \cellcolor{excellent} All technical terms are defined as they are used and understandable for the average CS student. Relevant mathematical and algorithmic concepts are introduced and explained.
-    & \cellcolor{good} Most technical terms are defined as they are used, but may require additional study for the average CS student. Some relevant mathematical and algorithmic concepts are missing.
-    & \cellcolor{marginal} Most technical terms are defined, or include jargon not understandable by the average CS student. Many relevant mathematical and algorithmic concepts are missing.
-    & \cellcolor{unacceptable} The importance/value of the project is never explained. Many technical terms are undefined, or include jargon only the author understands. The necessary mathematical and algorithmic concepts are missing. \\
-\midrule
-\textbf{Prior Work} - How have other people solved similar problems? What inspirations are you drawing from?
-    & \cellcolor{excellent} All literature/prior work cited is relevant, and no relevant literature/work is missing. Papers are discussed in thematic groups, highlighting how they are connected. The discussion highlights how the literature influenced the project.
-    & \cellcolor{good} The majority of the literature cited is relevant, but may be missing important areas of review. Papers are discussed in thematic groups, but with missing connections. Irrelevant details may be included in the description and key contributions to the project may be missing.
-    & \cellcolor{marginal} Most of the literature/work cited is relevant, but many are not or may be missing. Papers are discussed in thematic groups, but with little or no connections. Descriptions include many irrelevant details, with unclear or missing contributions to the project.
-    & \cellcolor{unacceptable} Most of the literature/work cited is irrelevant to the project. Papers are discussed individually with minimal connections. Significant or foundational work in the area is not included. Descriptions include irrelevant details or incorrect claims. \\
-\midrule
-\textbf{Methods} - How did you go about solving the problem? What did you do?
-    & \cellcolor{excellent} The approach to the project is clearly laid out, and justified with respect to literature and the goals of the project. Intermediate decisions are explained and evidence for choosing between approaches presented. Prior and current work is clearly delineated.
-    & \cellcolor{good} The approach to the project is laid out and justified, with minor details missing. Intermediate decisions may be missing. Alternative approaches are listed, but not the evidence for rejecting them. Prior and current work is delineated, with some areas of confusion
-    & \cellcolor{marginal} The approach to the project is laid out, with insufficient detail. Intermediate decisions are not mentioned. The methods are only barely justified. No consideration to alternate approaches is given. The boundary between prior and current work is unclear.
-    & \cellcolor{unacceptable} No methods, or methods that do not correspond to what was actually done. Intermediate decisions are unexplained and inexplicable. Prior and current work is muddled, or work is overstated or plagiarized. \\
-\midrule
-\textbf{Evaluation Metrics} - How will we know that the problem has been solved?
-    & \cellcolor{excellent} The metrics used and method of collection are appropriate, clearly explained, and justified with respect to the literature and the problem to be solved. Other metrics and why they are not used are discussed.
-    & \cellcolor{good} The metrics used and method of collection are appropriate and clearly explained, although the justification may need work. Some other metrics are considered, but with weak reasons for not using them.
-    & \cellcolor{marginal} The metrics used and method of collection are marginally appropriate, but not clearly explained and with minimal justification. No other metrics were considered.
-    & \cellcolor{unacceptable} No metrics were given, or the specific method of calculation unclear. The metrics are not justified or do not match the goals of the project. \\
-\midrule
-\textbf{Results and Discussion} - Did you actually solve the problem? Why/Why not?
-    & \cellcolor{excellent} The stated metrics are used and the results explained with respect to the methods. Alternate explanations and caveats to the results are explored. The results are connected to the goals of the project.
-    & \cellcolor{good} The stated metrics are used and the results explained, although they may not be verified. Some caveats are listed, but alternate explanations are not considered. The results are connected to the goals of the project.
-    & \cellcolor{marginal} The stated metrics are used, but with no explanation of why those results occurred. Little to no caveats or alternate explanations are explored. The results have minimal connection to the goals of the project.
-    & \cellcolor{unacceptable} No results, or results that do not match the evaluation metrics or the project goals. \\
-\midrule
-\textbf{Ethical Considerations} - Why might people want to be careful about your project? What difficult decisions did you have to make?
-    & \cellcolor{excellent} The project is considered both in its complete technological and societal context. Issues of bias and diversity are explored in detail, and potential contributions to global and local inequity examined. Relevant literature is cited.
-    & \cellcolor{good} Both technological and societal context of the project is explored, although some considerations may be missing. Issues of bias and diversity are explored, as are potential contributions to global and local inequity. Little to no relevant literature is cited.
-    & \cellcolor{marginal} Only one of technological or societal context is considered, in insufficient detail. Issues of bias and diversity are explored in brief, as are contributions to global/local inequity. No relevant literature is cited. 
-    & \cellcolor{unacceptable} Ethical considerations are non existent or perfunctory. Issues of bias and diversity are glossed over or ignored, as are potential contributions to global and local inequity. Little to no relevant literature is cited. \\
-\midrule
-\textbf{Replication Instructions} - How would someone else use your project? (this should be an appendix to your paper; this does not count towards your page requirement/limit)
-    & \cellcolor{excellent} All software used by the project is listed, with instructions that successfully allow another CS student to execute it. Particular attention is paid to future-proving the instructions (eg. package version, VMs, etc.)
-    & \cellcolor{good} All software used by the project is listed, with instructions that successfully allow another CS student to execute it. Reproduction may require additional steps (eg. unguided installation of software).
-    & \cellcolor{marginal} Some software or steps for reproducing the project are missing or incorrect, requiring minor fixes. Reproduction may require additional steps (eg. unguided installation of software).
-    & \cellcolor{unacceptable} Some software or steps for reproducing the project are missing or incorrect, requiring major fixes or debugging. Additional requirements may be missing entirely and uninferable from what is provided. \\
-\midrule
-\textbf{Code Architecture Overview} - How would someone else extend your project? (this should be an appendix to your paper; this does not count towards your page requirement/limit)
-    & \cellcolor{excellent} The organization of the code is clearly laid out/diagrammed, with justification. Another developer could use the overview to extend or debug the project.
-    & \cellcolor{good} The organization of the code with incomplete justification. Another developer could discuss the merits of the code, but not contribute.
-    & \cellcolor{marginal} Boundaries between project components are awkward. The text is descriptive of the organization but does not aid understanding. Another developer will have trouble understanding the code.
-    & \cellcolor{unacceptable} Boundaries between project components are bizarre or non-existent. Another developer is better off starting from scratch. \\
-\end{longtable}
-\end{landscape}
 
 \end{document}

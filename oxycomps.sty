@@ -5,15 +5,15 @@
 % define bold 11pt Times font for second-order headings
 \font\elvbf = ptmb scaled 1100
 
-\usepackage[style=numeric,sorting=nyt]{biblatex} % format the bibliography nicely
+\usepackage[style=numeric,sorting=nyt]{biblatex} % format the bibliography
 \usepackage{xpatch} % used to patch \textcite
 
 % change \textcite to do family-name (year)
 \xpatchbibmacro{textcite}
-  {\printnames{labelname}}
-  {\printnames{labelname} (\printfield{year})}
-  {}
-  {}
+{\printnames{labelname}}
+{\printnames{labelname} (\printfield{year})}
+{}
+{}
 % sort bibliography by last name
 \DeclareNameAlias{default}{family-given}
 
@@ -62,41 +62,41 @@
 
 % style the title
 \def\@maketitle{
-   \newpage
-   \begin{center}
-      {\Large \bf \@title \par}
-      % add two empty lines at the end of the title
-      \vspace*{2\baselineskip}
-      {
-         \large
-         \begin{tabular}[t]{c}
-            \@author
-         \end{tabular}
-         \par
-      }
-      % add small space at the end of the author name
-      \vspace*{.5em}
-      {
-         \ifx \@empty \@email
-         \else
-            \texttt{\@email}
+    \newpage
+    \begin{center}
+        {\Large \bf \@title \par}
+        % add two empty lines at the end of the title
+        \vspace*{2\baselineskip}
+        {
+            \large
+            \begin{tabular}[t]{c}
+                \@author
+            \end{tabular}
             \par
-            \vspace*{.25em}
-         \fi
-         \ifx \@empty \@affiliation
-         \else
-            \@affiliation
-         \fi
-      }
-      % add empty line at the end of the title block
-      \vspace*{\baselineskip}
-   \end{center}
+        }
+        % add small space at the end of the author name
+        \vspace*{.5em}
+        {
+            \ifx \@empty \@email
+            \else
+                \texttt{\@email}
+                \par
+                \vspace*{.25em}
+            \fi
+            \ifx \@empty \@affiliation
+            \else
+                \@affiliation
+            \fi
+        }
+        % add empty line at the end of the title block
+        \vspace*{\baselineskip}
+    \end{center}
 }
 
 % style the abstract
 \def\abstract{%
-   \centerline{\large\bf Abstract}%
-   \vspace*{\baselineskip}%
+    \centerline{\large\bf Abstract}%
+    \vspace*{\baselineskip}%
 }
 
 % define email and affiliation
@@ -107,6 +107,6 @@
 
 % correct heading spacing and type
 \def\section{\@startsection {section}{1}{\z@}
-   {14pt plus 2pt minus 2pt}{14pt plus 2pt minus 2pt} {\large\bf}}
+{14pt plus 2pt minus 2pt}{14pt plus 2pt minus 2pt} {\large\bf}}
 \def\subsection{\@startsection {subsection}{2}{\z@}
-   {13pt plus 2pt minus 2pt}{13pt plus 2pt minus 2pt} {\elvbf}}
+{13pt plus 2pt minus 2pt}{13pt plus 2pt minus 2pt} {\elvbf}}
