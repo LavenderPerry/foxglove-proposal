@@ -75,7 +75,7 @@ breaking their console.
 It can enforce the hegemony it should stand in opposition to, and fails the
 exact people that have the most to gain from it \cite{brown_why_2022}.
 
-My project is a handheld game console, inspired by console hackers and
+My project is Foxglove, a handheld game console inspired by console hackers and
 homebrewers. The console is designed to be opinionated and reflect my own ways
 of playing games, yet encourage and facilitate others remixing and modifying it
 as much as possible. It attempts to give users the tools to become designers of
@@ -148,7 +148,7 @@ that disallow third party development, homebrewing is a useful practice.
 \section{Prior Work}
 
 There are multiple studies as well as other projects that are relevant to
-\textit{Foxglove}, which I discuss and categorize here.
+Foxglove, which I discuss and categorize here.
 
 \subsection{Accessibility}
 
@@ -165,7 +165,7 @@ integrate these design recommendations are in section 4.
 
 \subsection{Cheap and Low Power Handhelds}
 
-\textit{ENGAGE} is a \textit{Game Boy} compatable handheld console that works
+ENGAGE is a Game Boy compatable handheld console that works
 without a battery.
 Instead, it uses a small solar panel as well as buttons that harvest energy
 from the gamer's actions to power the device.
@@ -173,8 +173,8 @@ What I found most interesting is the power saving methods they used,
 which I may adopt for my own device.
 Although some methods had drawbacks to them, such as using a non-backlit screen,
 one that had very little drawbacks was attaching an external FRAM device.
-Another interesting aspect of the \textit{ENGAGE} is it
-reads the memory values of the \textit{Game Boy} game
+Another interesting aspect of the ENGAGE is it
+reads the memory values of the Game Boy game
 and stores them to reload them
 when the console loses and regains power \cite{de_winkel_battery-free_2020}.
 I plan to introduce a general purpose modding API into my handheld that
@@ -208,32 +208,32 @@ Providing an open development platform for a game console is one way to make
 creation for the console easier. Additionally, there are efforts to lower the
 technical barrier to creating homebrew for existing consoles, made by and for
 users of the console.
-One such example is \textit{LÖVE Potion}, a port of the \textit{LÖVE} video
+One such example is LÖVE Potion, a port of the LÖVE video
 game framework to Nintendo consoles, including the 3DS, Wii U, and Switch
 \cite{noauthor_lovebrewlovepotion_2025}.
-\textit{LÖVE Potion} allows users to make games
+LÖVE Potion allows users to make games
 for these consoles without having to use systems programming languages such as
 C, and gives them high level functions and abstractions to make the process
-significantly more beginner friendly. Because \textit{LÖVE}
+significantly more beginner friendly. Because LÖVE
 has been successfully adapted
 to game consoles, and it is flexible enough to adapt to my own console, I am
-utilizing it for my development platform. Modding tools for \textit{LÖVE},
+utilizing it for my development platform. Modding tools for LÖVE,
 such as
-\textit{Lovely}, may also be used to provide tools for modding on the console.
-\textit{Lovely} is a library that, when loaded alongside \textit{LÖVE},
+Lovely, may also be used to provide tools for modding on the console.
+Lovely is a library that, when loaded alongside LÖVE,
 allows for Lua code injection into a
-\textit{LÖVE} game. Although primarily used to mod \textit{Balatro},
+LÖVE game. Although primarily used to mod Balatro,
 it should work for any other
-game made with the \textit{LÖVE} framework.
+game made with the LÖVE framework.
 \cite{green_ethangreen-devlovely-injector_2025}. More information on how I use
-\textit{LÖVE} and how I plan to use \textit{Lovely} for this project
+LÖVE and how I plan to use Lovely for this project
 is in section 4.
 
 \subsection{Launchers}
 
 One of the core components of any game console is a menu to access the games and
 other applications on the console. Commonly called launchers, an example of one
-that integrates the \textit{LÖVE} framework is \textit{Love Launcher}
+that integrates the LÖVE framework is Love Launcher
 \cite{noauthor_glitchapplovelauncher_nodate}. Although it does a lot of things
 that I can incorporate into my launcher, it is not suitable to use with
 my handheld. Most significantly, it is not designed with the handheld form
@@ -242,7 +242,7 @@ inspiration from, and what I choose to do differently from it.
 
 \section{Methods}
 
-\textit{Foxglove} consists of multiple components:
+Foxglove consists of multiple components:
 the physical console hardware, the
 game launcher, and the operating system. These components integrate with each
 other to create a fully functional game console.
@@ -252,13 +252,13 @@ other to create a fully functional game console.
 The launcher (available on GitHub
 \cite{perry_lavenderperryfoxglove-launcher_2025})
 handles listing games to the user, managing console settings, and
-running console games. Similarly to \textit{Love Launcher},
-it is built using the \textit{LÖVE}
+running console games. Similarly to Love Launcher,
+it is built using the LÖVE
 framework and runs games built on that same framework. The primary architectural
-difference between \textit{Foxglove}'s launcher and
-\textit{Love Launcher} is, while \textit{Love Launcher}
+difference between Foxglove's launcher and
+Love Launcher is, while Love Launcher
 creates a new process and starts up the framework whenever a game is launched,
-\textit{Foxglove}'s launcher uses the existing process to run the game,
+Foxglove's launcher uses the existing process to run the game,
 allowing the game
 to take control over the process that the launcher is running in
 \cite{noauthor_glitchapplovelauncher_nodate}. I chose this approach for two
@@ -291,9 +291,9 @@ be specified by the game metadata, described in subsection 4.4.
 
 \subsection{Modding API}
 
-The modding API may integrate with tools such as \textit{Lovely}
+The modding API may integrate with tools such as Lovely
 to allow for direct
-source code modification of games. Using \textit{Lovely}'s patch format,
+source code modification of games. Using Lovely's patch format,
 the user will be
 able to specify code to inject into the source of a game
 \cite{green_ethangreen-devlovely-injector_2025}. This allows for large
@@ -330,13 +330,13 @@ injecting their code only where I have created a callback, a patch-based system
 allows modders to inject their code anywhere. Additionally, a callback-based
 system may be created on top of a patch-based system, but a patch-based system
 can not be created on top of a callback-based system. Another reason to prefer a
-patch-based system is I can use \textit{Lovely} for part of it
+patch-based system is I can use Lovely for part of it
 instead of needing to
 implement the entire thing from scratch. This also partially mitigates the
 disadvantage of needing to learn a patch format, because users may already know
-\textit{Lovely}'s format,
+Lovely's format,
 or may choose to use their knowledge of the format for modding
-outside the context of \textit{Foxglove}.
+outside the context of Foxglove.
 
 \subsection{General Customization}
 
@@ -356,18 +356,18 @@ improve the usability of the UI \cite{rello_effect_2016}. Font size and style
 \subsection{Integrated and Custom Controls}
 
 The main control scheme I am considering for
-\textit{Foxglove} consists of 4 to 7
+Foxglove consists of 4 to 7
 buttons. This lower than average amount of buttons is in the range of an older
-console, such as the \textit{Game Boy} with 8 buttons,
+console, such as the Game Boy with 8 buttons,
 when the directional pad, or D-pad,
 is counted as 4 \cite{de_winkel_battery-free_2020}.
 One reason to choose this amount is to
 reduce the learning curve for using the controls. With less possible inputs,
 there are less motions for the player to learn and do, which may also make
-\textit{Foxglove} accessible to people who struggle with many possible inputs.
+Foxglove accessible to people who struggle with many possible inputs.
 Another
 advantage to having less buttons is making the built in controls and custom
-controllers for \textit{Foxglove} is easier.
+controllers for Foxglove is easier.
 For both myself while making the console and
 for others while creating controllers for the console, it requires less hardware
 and makes assembly simpler. Users making custom controllers will have more
@@ -394,7 +394,7 @@ buttons on the controller to change based on the controller plugged in.
 Games will be able to define metadata, which tells the console how to handle the
 game. It will be similar to PlayDate's metadata definition system in that it
 will work using a file at the root directory \cite{inc_inside_nodate}. This file
-will likely be in TOML, which is already used by \textit{Lovely}
+will likely be in TOML, which is already used by Lovely
 \cite{green_ethangreen-devlovely-injector_2025}. Using a standard format
 decreases the amount of work I need to do to parse it and increases the chance a
 user has already learned the format. Metadata will include the game title,
@@ -408,7 +408,7 @@ launcher in some way.
 %and providing tools to modify the games. Installation may be done through
 %external storage such as USB drives or SD cards that are inserted into the
 %console and copied to the console storage. Modification of games may use a
-%pattern-based patch system such as \textit{Lovely}
+%pattern-based patch system such as Lovely}
 %\cite{green_ethangreen-devlovely-injector_2025}. Alternatively, callbacks
 %injected by the launcher may be used by making the launcher load custom code
 %specified by the modifications.
@@ -428,7 +428,7 @@ in subsection 5.3.
 \subsection{Testing With Games}
 
 To ensure the launcher can handle a reasonable variety of games, I tested
-multiple games made with the \textit{LÖVE} framework.
+multiple games made with the LÖVE framework.
 Games could all be listed in the UI
 and launched. Any game that relies on mouse input does not work when the
 launcher is ran on the low level graphics APIs the console uses. However, this
@@ -453,19 +453,19 @@ customization are elaborated upon in the previous section.
 
 \subsection{Future Metrics}
 
-To determine if \textit{Foxglove} reaches the goal of being easy to mod and
+To determine if Foxglove reaches the goal of being easy to mod and
 extend, I intend to perform more user testing, but with a primary focus on ease
 of developing games for and modding of the console. Testers will be primarily
 individuals with little to no experience with computer science, to avoid
 creating a system that is easy for computer scientists,
 but difficult for others. Additionally, testing on a wide variety of users must
-occur see how successfully \textit{Foxglove} meets goals of accessibility, and
+occur see how successfully Foxglove meets goals of accessibility, and
 for which users it meets or fails those goals.
 
 Additionally, I may attempt to teach an informal class
-class on developing and modding games on \textit{Foxglove}. The goal of this is
-to see if \textit{Foxglove} is easy enough to teach to others with no
-experience, as well as to see what kind of community \textit{Foxglove} can help
+class on developing and modding games on Foxglove. The goal of this is
+to see if Foxglove is easy enough to teach to others with no
+experience, as well as to see what kind of community Foxglove can help
 build through this setting. The main issue with this type of evaluation is that
 failures in the class may be due to my own incompetency as a teacher, rather
 than any failures with the project. An alternative option is to get someone else
@@ -477,7 +477,7 @@ attempt to spread the project and see what community results from it. This would
 be primarily on the internet, as most other console modding communities are
 \cite{brown_why_2022}. Forums and chatrooms that surround similar topics to my
 game console and encourage sharing projects are ideal spaces. If promotion of
-\textit{Foxglove} is done in a similar space to console modding projects and
+Foxglove is done in a similar space to console modding projects and
 communities, it should be easier to compare what occurs to those other
 communities. The main issue with this idea is that communities take time to
 develop, so it would likely take past the due date for any conclusions to be
@@ -490,11 +490,11 @@ As shown by testing, the game launcher was a successful first step towards my
 project. My most significant next steps include getting the launcher to run on
 hardware more similar to the eventual final project, as well as beginning to
 implement modding APIs. One potential necessary technical change to the launcher
-would be to give it more control over the \textit{LÖVE}
+would be to give it more control over the LÖVE
 game framework environment that
 it runs in. This would require either making the launcher itself be a modified
 version of
-\textit{LÖVE}, or creating a seperate application that uses the \textit{LÖVE}
+LÖVE, or creating a seperate application that uses the LÖVE
 library.
 The process of doing either of these things may require rewriting some or all of
 the existing code from Lua to C++. A rewrite such as this one should be done as

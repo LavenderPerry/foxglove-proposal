@@ -4,6 +4,7 @@
 # archive files
 *.zip
 *.rar
+*.gz
 
 # latex intermediaries
 *.aux
